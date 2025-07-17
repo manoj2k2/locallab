@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/
+
+  api_adapter:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./config:/app/config
+    depends_on:
+      - rabbitmq
+
+  transformer:
+    build:
+      context: .
+      dockerfile: Dockerfile.transformer
+    volumes:
+      - ./src:/app/src
+      - ./config:/app/config
+    depends_on:
+      - rabbitmq
+
+  file_output_adapter:
+    build:
+      context: .
+      dockerfile: Dockerfile.file_writer
+    volumes:
+      - ./src:/app/src
+      - ./output:/app/output
+    depends_on:
+      - rabbitmq
+
+volumes:
+  rabbitmq_data:

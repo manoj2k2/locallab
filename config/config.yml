@@ -1,0 +1,15 @@
+rabbitmq:
+  host: rabbitmq
+  port: 5672
+
+transformations:
+  - source_type: "user_form"
+    rules:
+      - type: "add_metadata"
+        timestamp_field: "submission_time"
+    target: "debug_logger"
+
+targets:
+  - name: "debug_logger"
+    protocol: "file"
+    queue: "file_output_queue"

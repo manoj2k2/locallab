@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "messageId": "9bdb5130-8ebe-498b-bafa-a61f04feb936",
+    "sourceSystem": "user_form_api",
+    "sourceType": "user_form",
+    "sourceTimestamp": "2025-07-17T13:55:35.650749+00:00",
+    "ingestionTimestamp": "2025-07-17T13:55:35.650773+00:00"
+  },
+  "payload": {
+    "patient_id": "P12345",
+    "test_type": "blood_pressure",
+    "value": "120/80",
+    "submission_time": "2025-07-17T14:08:59.289821+00:00"
+  }
+}
